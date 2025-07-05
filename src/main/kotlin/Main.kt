@@ -1,7 +1,6 @@
 package org.example
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
-import org.jsoup.nodes.Element
 import org.jsoup.select.Elements
 
 fun main() {
@@ -10,12 +9,10 @@ fun main() {
         .timeout(10000)
         .get()
 
-    val quotes: Elements = doc.select(".sc-2aegk7-2.bzpNIu")
+    val quotes: Elements = doc.select("article")
 
-    var i = 0
-    for (quote: Element in quotes) {
-        ++i
-        println("Цитатата № $i")
+    quotes.forEachIndexed { index, quote ->
+        println("Цитата № ${index + 1}")
         println(quote.text())
     }
 
